@@ -19,11 +19,11 @@ def generate_password(length, level):
 # Streamlit UI setup
 st.title("Random Password Generator")
 
-# Input for password length
-length = st.slider("Select the password length", min_value=6, max_value=24, value=12)
-
 # Input for difficulty level
 level = st.selectbox("Select the password difficulty level", ["easy", "medium", "hard"])
+
+# Input for password length
+length = st.slider("Select the password length", min_value=8, max_value=64, value=8)
 
 # Button to generate password
 if st.button("Generate Password"):
