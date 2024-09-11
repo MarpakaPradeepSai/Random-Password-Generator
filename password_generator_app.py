@@ -14,7 +14,7 @@ def generate_password(length, level):
     else:
         return None
     
-    password = ''.join(random.choice(characters) for i in range(length))
+    password = ''.join(random.choice(characters) for _ in range(length))
     return password
 
 # Streamlit UI setup
@@ -34,22 +34,16 @@ if 'password' not in st.session_state:
 if st.button("Generate Password"):
     st.session_state.password = generate_password(length, level)
 
-# Display the generated password
+# Display the generated password and copy functionality
 if st.session_state.password:
-    st.text_input("Generated Password:", value=st.session_state.password, key='password_display')
+    password = st.session_state.password
+    st.text_input("Generated Password:", value=password, key='password_display')
 
-    # JavaScript to copy password to clipboard
-    copy_code = """
-    <script>
-    function copyToClipboard() {
-        var copyText = document.getElementById("password-display");
-        copyText.select();
-        document.execCommand("copy");
-    }
-    </script>
-    <button onclick="copyToClipboard()">Copy Password</button>
+    # JavaScript for copying password
+    copy_button_html = f"""
+    <input type="text" value="{password}" id="password_input" readonly style="position:absolute; left:-9999px;">
+    <button onclick="document.getElementById('password_input').select(); document.execCommand('copy');">Copy Password</button>
     """
-    components.html(copy_code, height=0)
+    components.html(copy_button_html, height=50)
 else:
     st.write("Generate a password to display it here.")
-
