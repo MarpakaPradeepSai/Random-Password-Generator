@@ -30,8 +30,56 @@ length = st.slider("Select the password length", min_value=8, max_value=64, valu
 if 'password' not in st.session_state:
     st.session_state.password = ""
 
-# Button to generate password
-if st.button("Generate Password"):
+# HTML and JavaScript for button with custom styling
+html_code = f"""
+<style>
+.generate-button {{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #FF0000; /* Red color */
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+}}
+.generate-button:hover {{
+    background-color: #CC0000; /* Darker red on hover */
+}}
+</style>
+<div>
+    <button class="generate-button" onclick="generatePassword()">Generate Password</button>
+</div>
+<script>
+function generatePassword() {{
+    // Simulate button click in Streamlit app
+    window.parent.postMessage({{ type: 'generate_password' }}, '*');
+}}
+</script>
+"""
+
+# Render the custom HTML for the generate password button
+components.html(html_code, height=60)
+
+# Handle custom message from JavaScript to generate password
+st.markdown(
+    """
+    <script>
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'generate_password') {
+            document.getElementById('generate_password_button').click();
+        }
+    });
+    </script>
+    """,
+    unsafe_allow_html=True
+)
+
+# Button to generate password in Streamlit
+generate_button = st.button("Generate Password", key='generate_password_button')
+
+# Generate password when the button is clicked
+if generate_button:
     st.session_state.password = generate_password(length, level)
 
 # Display the generated password and copy functionality
@@ -51,7 +99,7 @@ if st.session_state.password:
         border: 1px solid #D0D0D0;
         padding: 10px;
         border-radius: 4px;
-        font-size: 14px;
+        font-size: 16px;
         width: 300px;
         margin-right: 10px;
     }}
