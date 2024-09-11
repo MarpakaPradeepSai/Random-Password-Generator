@@ -4,11 +4,11 @@ import streamlit as st
 
 # Function to generate password based on difficulty level
 def generate_password(length, level):
-    if level == 'easy':
+    if level == 'Easy':
         characters = string.ascii_letters  # Only lowercase and uppercase letters
-    elif level == 'medium':
+    elif level == 'Medium':
         characters = string.ascii_letters + string.digits  # Letters and numbers
-    elif level == 'hard':
+    elif level == 'Hard':
         characters = string.ascii_letters + string.digits + string.punctuation  # Letters, numbers, and symbols
     else:
         return None
@@ -20,7 +20,7 @@ def generate_password(length, level):
 st.title("Random Password Generator")
 
 # Input for difficulty level
-level = st.selectbox("Select the password difficulty level", ["easy", "medium", "hard"])
+level = st.selectbox("Select the password difficulty level", ["Easy", "Medium", "Hard"])
 
 # Input for password length
 length = st.slider("Select the password length", min_value=8, max_value=64, value=8)
