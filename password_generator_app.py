@@ -38,8 +38,24 @@ if st.button("Generate Password"):
 if st.session_state.password:
     password = st.session_state.password
     
-    # Display the generated password in an immutable text input box
-    st.text_input("Generated Password:", value=password, key='password_display', disabled=True)
+    # Display the generated password in a custom-styled immutable text input box
+    st.markdown(
+        f"""
+        <style>
+        .password-input {{
+            color: #000000;
+            background-color: #F5F5F5;
+            border: 1px solid #D0D0D0;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 100%;
+        }}
+        </style>
+        <input type="text" value="{password}" class="password-input" readonly>
+        """,
+        unsafe_allow_html=True
+    )
 
     # JavaScript for copying password
     copy_button_html = f"""
