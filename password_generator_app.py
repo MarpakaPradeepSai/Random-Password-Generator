@@ -38,6 +38,3 @@ if st.button("Generate Password"):
             st.success("Password copied to clipboard!")
     else:
         st.error("Something went wrong. Please try again.")
-
-# Footer
-st.write("Adjust the length and select a difficulty level to generate a secure password.")
