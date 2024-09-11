@@ -66,7 +66,7 @@ if st.session_state.password:
         color: #000000;
         background-color: #F5F5F5;
         border: 1px solid #D0D0D0;
-        padding: 4px;
+        padding: 8px;
         border-radius: 4px;
         font-size: 14px;
         width: 300px;
