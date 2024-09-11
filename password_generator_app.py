@@ -73,7 +73,7 @@ if st.session_state.password:
         margin-right: 10px;
     }}
     .copy-button {{
-        padding: 8px 10px;
+        padding: 9px 10px;
         border: none;
         border-radius: 4px;
         background-color: #0056b3;
