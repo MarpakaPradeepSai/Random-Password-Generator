@@ -37,12 +37,14 @@ if st.button("Generate Password"):
 # Display the generated password and copy functionality
 if st.session_state.password:
     password = st.session_state.password
-    st.text_input("Generated Password:", value=password, key='password_display')
+    
+    # Display the generated password in an immutable text input box
+    st.text_input("Generated Password:", value=password, key='password_display', disabled=True)
 
     # JavaScript for copying password
     copy_button_html = f"""
     <input type="text" value="{password}" id="password_input" readonly style="position:absolute; left:-9999px;">
-    <button onclick="document.getElementById('password_input').select(); document.execCommand('copy');">Copy Password</button>
+    <button onclick="document.getElementById('password_input').select(); document.execCommand('copy'); alert('Password copied to clipboard!');">Copy Password</button>
     """
     components.html(copy_button_html, height=50)
 else:
