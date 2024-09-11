@@ -18,22 +18,26 @@ def generate_password(length, level):
     return password
 
 # Streamlit UI setup
-st.title("Random Password Generator")
-
-# Custom CSS to style the Generate Password button
 st.markdown("""
-<style>
-    .stButton > button {
-        color: white !important;
-        background-color: red !important;
-        border-color: red !important;
-    }
-    .stButton > button:hover, .stButton > button:focus, .stButton > button:active {
-        color: white !important;
-        background-color: red !important;
-        border-color: red !important;
-    }
-</style>
+    <style>
+        .title {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .stButton > button {
+            color: white !important;
+            background-color: red !important;
+            border-color: red !important;
+        }
+        .stButton > button:hover, .stButton > button:focus, .stButton > button:active {
+            color: white !important;
+            background-color: red !important;
+            border-color: red !important;
+        }
+    </style>
+    <div class="title">Random Password Generator</div>
 """, unsafe_allow_html=True)
 
 # Input for difficulty level
@@ -59,6 +63,7 @@ if st.session_state.password:
     .container {{
         display: flex;
         align-items: center;
+        justify-content: center;
     }}
     .password-input {{
         color: #000000;
