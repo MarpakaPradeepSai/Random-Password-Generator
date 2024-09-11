@@ -18,11 +18,11 @@ def generate_password(length, level):
     return password
 
 # Streamlit UI setup
-st.title("Random Password Generator")
-
-# Custom CSS to style the Generate Password button
 st.markdown("""
 <style>
+    .title {
+        text-align: center;
+    }
     .stButton > button {
         color: white !important;
         background-color: red !important;
@@ -35,6 +35,8 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
+st.markdown("<h1 class='title'>Random Password Generator</h1>", unsafe_allow_html=True)
 
 # Input for difficulty level
 level = st.selectbox("Select the password difficulty level", ["Easy", "Medium", "Hard"])
@@ -58,7 +60,9 @@ if st.session_state.password:
     <style>
     .container {{
         display: flex;
+        flex-direction: column;
         align-items: center;
+        gap: 10px;
     }}
     .password-input {{
         color: #000000;
@@ -67,8 +71,9 @@ if st.session_state.password:
         padding: 10px;
         border-radius: 4px;
         font-size: 14px;
-        width: 300px;
-        margin-right: 10px;
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
     }}
     .copy-button {{
         padding: 10px 20px;
@@ -77,9 +82,11 @@ if st.session_state.password:
         background-color: #0056b3;
         color: white;
         cursor: pointer;
+        width: 100%;
+        max-width: 300px;
     }}
     .copy-button:hover {{
-        background-color: #28a745;
+        background-color: #004494;
     }}
     </style>
     <div class="container">
@@ -96,6 +103,6 @@ if st.session_state.password:
     </script>
     """
     # Render the HTML and JavaScript
-    components.html(html_code, height=80)
+    components.html(html_code, height=120)
 else:
     st.write("Generate a password to display it here.")
