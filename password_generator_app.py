@@ -58,9 +58,7 @@ if st.session_state.password:
     <style>
     .container {{
         display: flex;
-        flex-direction: column;
         align-items: center;
-        gap: 10px;
     }}
     .password-input {{
         color: #000000;
@@ -69,9 +67,8 @@ if st.session_state.password:
         padding: 10px;
         border-radius: 4px;
         font-size: 14px;
-        width: 100%;
-        max-width: 300px;
-        text-align: center;
+        width: 300px;
+        margin-right: 10px;
     }}
     .copy-button {{
         padding: 10px 20px;
@@ -80,11 +77,9 @@ if st.session_state.password:
         background-color: #0056b3;
         color: white;
         cursor: pointer;
-        width: 100%;
-        max-width: 300px;
     }}
     .copy-button:hover {{
-        background-color: #004494;
+        background-color: #28a745;
     }}
     </style>
     <div class="container">
@@ -101,6 +96,6 @@ if st.session_state.password:
     </script>
     """
     # Render the HTML and JavaScript
-    components.html(html_code, height=120)
+    components.html(html_code, height=80)
 else:
     st.write("Generate a password to display it here.")
