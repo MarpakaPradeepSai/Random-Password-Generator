@@ -38,50 +38,50 @@ if st.button("Generate Password"):
 if st.session_state.password:
     password = st.session_state.password
 
-    # Custom CSS and HTML for layout
-    st.markdown(
-        f"""
-        <style>
-        .container {{
-            display: flex;
-            align-items: center;
-        }}
-        .password-input {{
-            color: #000000;
-            background-color: #F5F5F5;
-            border: 1px solid #D0D0D0;
-            padding: 10px;
-            border-radius: 4px;
-            font-size: 16px;
-            width: 300px;
-            margin-right: 10px;
-        }}
-        .copy-button {{
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007BFF;
-            color: white;
-            cursor: pointer;
-        }}
-        .copy-button:hover {{
-            background-color: #0056b3;
-        }}
-        </style>
-        <div class="container">
-            <input type="text" value="{password}" class="password-input" readonly>
-            <button class="copy-button" onclick="copyToClipboard()">Copy Password</button>
-        </div>
-        <script>
-        function copyToClipboard() {{
-            var copyText = document.querySelector('.password-input');
-            copyText.select();
-            document.execCommand('copy');
-            alert('Password copied to clipboard!');
-        }}
-        </script>
-        """,
-        unsafe_allow_html=True
-    )
+    # HTML and JavaScript for password display and copying
+    html_code = f"""
+    <style>
+    .container {{
+        display: flex;
+        align-items: center;
+    }}
+    .password-input {{
+        color: #000000;
+        background-color: #F5F5F5;
+        border: 1px solid #D0D0D0;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 300px;
+        margin-right: 10px;
+    }}
+    .copy-button {{
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007BFF;
+        color: white;
+        cursor: pointer;
+    }}
+    .copy-button:hover {{
+        background-color: #0056b3;
+    }}
+    </style>
+    <div class="container">
+        <input type="text" value="{password}" class="password-input" id="password_input" readonly>
+        <button class="copy-button" onclick="copyToClipboard()">Copy Password</button>
+    </div>
+    <script>
+    function copyToClipboard() {{
+        var copyText = document.getElementById('password_input');
+        copyText.select();
+        document.execCommand('copy');
+        alert('Password copied to clipboard!');
+    }}
+    </script>
+    """
+
+    # Render the HTML and JavaScript
+    components.html(html_code, height=80)
 else:
     st.write("Generate a password to display it here.")
