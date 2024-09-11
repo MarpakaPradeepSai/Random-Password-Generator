@@ -25,15 +25,13 @@ st.markdown("""
 <style>
     .stButton > button {
         color: white !important;
-        background-color: red;
-        border-color: red;
+        background-color: red !important;
+        border-color: red !important;
     }
-    .stButton > button:hover {
-        background-color: darkred;
-        border-color: darkred;
-    }
-    .stButton > button:focus {
+    .stButton > button:hover, .stButton > button:focus, .stButton > button:active {
         color: white !important;
+        background-color: red !important;
+        border-color: red !important;
     }
 </style>
 """, unsafe_allow_html=True)
