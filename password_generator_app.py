@@ -24,14 +24,16 @@ st.title("Random Password Generator")
 st.markdown("""
 <style>
     .stButton > button {
-        color: white;
+        color: white !important;
         background-color: red;
         border-color: red;
     }
     .stButton > button:hover {
-        color: white;
         background-color: darkred;
         border-color: darkred;
+    }
+    .stButton > button:focus {
+        color: white !important;
     }
 </style>
 """, unsafe_allow_html=True)
