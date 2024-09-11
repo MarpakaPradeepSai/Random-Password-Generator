@@ -20,6 +20,22 @@ def generate_password(length, level):
 # Streamlit UI setup
 st.title("Random Password Generator")
 
+# Custom CSS to style the Generate Password button
+st.markdown("""
+<style>
+    .stButton > button {
+        color: white;
+        background-color: red;
+        border-color: red;
+    }
+    .stButton > button:hover {
+        color: white;
+        background-color: darkred;
+        border-color: darkred;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Input for difficulty level
 level = st.selectbox("Select the password difficulty level", ["Easy", "Medium", "Hard"])
 
@@ -37,7 +53,6 @@ if st.button("Generate Password"):
 # Display the generated password and copy functionality
 if st.session_state.password:
     password = st.session_state.password
-
     # HTML and JavaScript for password display and copying
     html_code = f"""
     <style>
@@ -80,7 +95,6 @@ if st.session_state.password:
     }}
     </script>
     """
-
     # Render the HTML and JavaScript
     components.html(html_code, height=80)
 else:
