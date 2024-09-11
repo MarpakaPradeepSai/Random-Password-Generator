@@ -64,7 +64,7 @@ if st.session_state.password:
         cursor: pointer;
     }}
     .copy-button:hover {{
-        background-color: #0056b3;
+        background-color: #28a745;
     }}
     </style>
     <div class="container">
