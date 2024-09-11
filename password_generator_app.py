@@ -2,8 +2,6 @@ import random
 import string
 import streamlit as st
 import streamlit.components.v1 as components
-import time
-
 # Function to generate password based on difficulty level
 def generate_password(length, level):
     if level == 'Easy':
@@ -17,7 +15,6 @@ def generate_password(length, level):
     
     password = ''.join(random.choice(characters) for _ in range(length))
     return password
-
 # Streamlit UI setup
 st.markdown("""
 <style>
@@ -28,7 +25,6 @@ st.markdown("""
         color: white !important;
         background-color: red !important;
         border-color: red !important;
-        transition: background-color 0.3s ease;
     }
     .stButton > button:hover, .stButton > button:focus, .stButton > button:active {
         color: white !important;
@@ -36,37 +32,18 @@ st.markdown("""
         border-color: red !important;
     }
 </style>
-
-<script>
-function animateButton() {
-    var button = document.querySelector('.stButton > button');
-    button.style.backgroundColor = 'green';
-    setTimeout(function() {
-        button.style.backgroundColor = 'red';
-    }, 300);
-}
-</script>
 """, unsafe_allow_html=True)
-
 st.markdown("<h1 class='title'>Random Password Generator</h1>", unsafe_allow_html=True)
-
 # Input for difficulty level
 level = st.selectbox("Select the password difficulty level", ["Easy", "Medium", "Hard"])
-
 # Input for password length
 length = st.slider("Select the password length", min_value=8, max_value=64, value=8)
-
 # Initialize session state for the password
 if 'password' not in st.session_state:
     st.session_state.password = ""
-
 # Button to generate password
-if st.button("Generate Password", on_click=lambda: st.components.v1.html(
-    "<script>animateButton();</script>", height=0
-)):
+if st.button("Generate Password"):
     st.session_state.password = generate_password(length, level)
-    time.sleep(0.3)  # Brief delay to allow animation to complete
-
 # Display the generated password and copy functionality
 if st.session_state.password:
     password = st.session_state.password
