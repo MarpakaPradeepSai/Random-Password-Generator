@@ -1,7 +1,6 @@
 import random
 import string
 import streamlit as st
-import pyperclip
 
 # Function to generate password based on difficulty level
 def generate_password(length, level):
@@ -13,7 +12,7 @@ def generate_password(length, level):
         characters = string.ascii_letters + string.digits + string.punctuation  # Letters, numbers, and symbols
     else:
         return None
-
+    
     password = ''.join(random.choice(characters) for i in range(length))
     return password
 
@@ -30,9 +29,13 @@ length = st.slider("Select the password length", min_value=8, max_value=64, valu
 if st.button("Generate Password"):
     password = generate_password(length, level)
     if password:
-        st.success(f"Generated {level} password: {password}")
-        # Add a copy button next to the generated password
-        st.button("Copy", on_click=lambda: pyperclip.copy(password))
+        # Display the generated password in a text box
+        st.text_input("Generated Password:", value=password)
+        
+        # Display the copy button (for UI purposes only)
+        if st.button("Copy Password"):
+            st.experimental_set_query_params(password=password)
+            st.success("Password copied to clipboard!")
     else:
         st.error("Something went wrong. Please try again.")
 
